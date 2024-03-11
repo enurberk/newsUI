@@ -1,0 +1,32 @@
+<div class="container">   
+    <h1 class="mt-3">Newsletter List</h1>
+
+    <div class="d-flex justify-content-end mt-3">
+        <a [routerLink]="['/admin/newsletters/add']" class="btn btn-primary">Add Newsletter</a>
+    </div>
+
+    <ng-container *ngIf="newsletters$ | async as newsletters">
+        <table  class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Short Description</th>
+                    <th>Is Visible?</th>
+                    <th>Categories</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor ="let newsletter of newsletters">
+                    <td>{{newsletter.title}}</td>
+                    <td>{{newsletter.shortDescription}}</td>
+                    <td>{{newsletter.isVisible}}</td>
+                    <td>
+                        <span *ngFor="let category of newsletter.categories">
+                            <span class="badge text-bg-secondary me-2">{{category.name}}</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</div>
